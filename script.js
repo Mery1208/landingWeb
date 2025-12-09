@@ -9,6 +9,12 @@ const heroTL = gsap.timeline({
 });
 
 heroTL
+ .to('.hero-box' , {
+        opacity: 1, 
+        scale: 1,
+        duration: 1.2,
+        ease: 'back.out(1.2)'
+    })
     .to('.hero-title' , {
         opacity: 1, 
         y: 0,
@@ -18,13 +24,8 @@ heroTL
         opacity: 1, 
         y: 0,
         duration: 0.8
-    }, '-=0.5')
-    .to('.hero-illustration' , {
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        ease: 'elastic.out(1, 0.5)'
-    }, '-=0.3');
+    }, '-=0.5');
+    
 
 //  ANIMACIONES DE FEATURES
 
