@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 //  ANIMACIONES DE HERO
 
-const heroTL = gsap.timeLine({
+const heroTL = gsap.timeline({
     defaults: {
         ease: 'power3.out'
     }
@@ -128,3 +128,125 @@ gsap.to('.interactive-wave' , {
 //hago ondas al hacer click
 const waveContainer = document.getElementById('waveContainer');
 const waveLine = document.getElementById('waveLine');
+
+waveContainer.addEventListener('click', (e) => {
+
+    const rect = waveContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // inicio del punto de onda
+    const dot = document.createElement('div');
+    dot.className = 'wave-dot';
+    dot.style.left = x + 'px';
+    dot.style.top = y + 'px';
+    waveLine.appendChild(dot);
+
+    // Alas ondas se expanden y desaparecen
+    gsap.timeline()
+        .to(dot, {
+            scale: 15,
+            opacity: 0,
+            duration: 1.5,
+            ease: 'power2.out',
+            onComplete: () => dot.remove()
+        });
+
+    // creo muchas ondas mas peques
+    for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+            const secondaryDot = document.createElement('div');
+            secondaryDot.className = 'wave-dot';
+            secondaryDot.style.left = x + 'px';
+            secondaryDot.style.top = y + 'px';
+            secondaryDot.style.background = i % 2 === 0 ? '#34D399' : '#10B981';
+            waveLine.appendChild(secondaryDot);
+
+            gsap.timeline()
+                .to(secondaryDot, {
+                    scale: 10 + i * 5,
+                    opacity: 0,
+                    duration: 1.2 + i * 0.3,
+                    ease: 'power2.out',
+                    onComplete: () => secondaryDot.remove()
+                });
+        }, i * 200);
+    }
+});
+
+
+//animacion section cta 
+
+// titulo del cta
+gsap.to('.cta-title', {
+    scrollTrigger: {
+        trigger: '.cta-title',
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+    },
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    ease: 'power2.out'
+});
+
+// texto en cta
+gsap.to('.cta-text', {
+    scrollTrigger: {
+        trigger: '.cta-text',
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+    },
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    delay: 0.2,
+    ease: 'power2.out'
+});
+
+
+// boton cta infinito
+// El botón pulsa constantemente para llamar la atención
+
+gsap.to('.cta-button', {
+    scale: 1.1,
+    boxShadow: '0 15px 40px rgba(16, 185, 129, 0.6)',
+    duration: 0.8,
+    ease: 'power1.inOut',
+    repeat: -1,
+    yoyo: true
+});
+
+
+// animacion footter q sea desde abajo
+
+
+gsap.to('.footer', {
+    scrollTrigger: {
+        trigger: '.footer',
+        start: 'top 90%',
+        toggleActions: 'play none none none'
+    },
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    ease: 'power2.out'
+});
+
+//ANIMACION EXTRA
+
+// Añadir efecto parallax sutil al hero
+gsap.to('.hero-illustration', {
+    scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1
+    },
+    y: 100,
+    opacity: 0.5
+});
+
+// Console log p comprobar que funciona
+console.log('Marea Digital - Animaciones GSAP cargadas correctamente');
+console.log(' Desarrollado por María - IES Albarregas');
