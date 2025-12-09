@@ -159,7 +159,7 @@ waveContainer.addEventListener('click', (e) => {
             secondaryDot.className = 'wave-dot';
             secondaryDot.style.left = x + 'px';
             secondaryDot.style.top = y + 'px';
-            secondaryDot.style.background = i % 2 === 0 ? '#34D399' : '#10B981';
+            secondaryDot.style.background = i % 2 === 0 ? '#652423ff' : '#fc0000ff';
             waveLine.appendChild(secondaryDot);
 
             gsap.timeline()
@@ -210,7 +210,7 @@ gsap.to('.cta-text', {
 
 gsap.to('.cta-button', {
     scale: 1.1,
-    boxShadow: '0 15px 40px rgba(16, 185, 129, 0.6)',
+    boxShadow: '0 15px 40px rgba(15, 212, 242, 0.6)',
     duration: 0.8,
     ease: 'power1.inOut',
     repeat: -1,
@@ -233,19 +233,6 @@ gsap.to('.footer', {
     ease: 'power2.out'
 });
 
-//ANIMACION EXTRA
-
-// Añadir efecto parallax sutil al hero
-gsap.to('.hero-illustration', {
-    scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1
-    },
-    y: 100,
-    opacity: 0.5
-});
 
 // Console log p comprobar que funciona
 console.log('Marea Digital - Animaciones GSAP cargadas correctamente');
